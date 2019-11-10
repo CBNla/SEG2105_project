@@ -29,7 +29,7 @@ public class deleteService extends AppCompatActivity {
         RadioButton staff = (RadioButton)findViewById(R.id.staffBtn);
         Clinic clinic = new Clinic();
         EditText userInput = (EditText) findViewById(R.id.deleteText);
-        if(userInput.getText() == null){
+        if(userInput.getText().toString().equals("")){
             Toast.makeText(deleteService.this, "You haven't input any service", Toast.LENGTH_LONG).show();
             finish();
         }

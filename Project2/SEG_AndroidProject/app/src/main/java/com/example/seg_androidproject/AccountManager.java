@@ -36,7 +36,11 @@ public class AccountManager extends AppCompatActivity {
         DataBase dataBase = new DataBase(this);
         if(delete.isChecked()){
             EditText userName = (EditText)findViewById(R.id.UserName);
-            if(employee.isChecked()){
+            if(userName.getText().toString().equals("")){
+                Toast.makeText(AccountManager.this, "You haven't enter user name", Toast.LENGTH_LONG).show();
+                finish();
+            }
+            else if(employee.isChecked()){
                 dataBase.remove("Employee", userName.getText().toString());
                 Toast.makeText(AccountManager.this, "Success!!!", Toast.LENGTH_LONG).show();
                 finish();

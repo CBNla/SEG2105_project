@@ -33,7 +33,7 @@ public class addService extends AppCompatActivity {
         staff = (RadioButton)findViewById(R.id.staffBtn);
         Clinic clinic = new Clinic();
         EditText userInput = (EditText)findViewById(R.id.addText);
-        if(userInput.getText() == null){
+        if(userInput.getText().toString().equals("")){
             Toast.makeText(addService.this, "You haven't input any service", Toast.LENGTH_LONG).show();
             finish();
         }
