@@ -9,10 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.seg_androidproject.Clinics.Clinic;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.seg_androidproject.DataBase.DataBase;
 
 public class AdminLogin extends AppCompatActivity {
 
@@ -42,24 +39,22 @@ public class AdminLogin extends AppCompatActivity {
     }
 
     public void servicesOnClick(View view){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("All the services provided by our clinic");
-        Clinic clinic = new Clinic();
-        ArrayList<List> services = clinic.getServices();
+        DataBase dataBase = new DataBase(this);
+        String[] services = dataBase.showServices();
         String service = "";
-        for(int i = 0; i < services.size(); i++){
+        for(int i = 0; i < services.length; i++){
             service += i+1;
             service += ". ";
-            if(i != services.size()){
-                service += services.get(i).get(0);
-                service += services.get(i).get(1);
+            if(i != services.length){
+                service += services[i];
                 service += "\n";
             }
             else{
-                service += services.get(i).get(0);
-                service += services.get(i).get(1);
+                service += services[i];
             }
         }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("All the services provided by our clinic");
         builder.setMessage(service);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
             @Override

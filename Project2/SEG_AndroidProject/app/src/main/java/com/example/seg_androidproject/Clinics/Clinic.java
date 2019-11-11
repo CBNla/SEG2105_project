@@ -10,7 +10,7 @@ public class Clinic {
     private static List<String> s3 = new ArrayList<>(Arrays.asList("Infusion"," by nurse"));
     private static List<String> s4 = new ArrayList<>(Arrays.asList("Tooth extraction"," by doctor"));
     private static List<String> s5 = new ArrayList<>(Arrays.asList("Optometry"," by staff"));
-    private static ArrayList<List> services = new ArrayList<List>(Arrays.asList(s1, s2, s3, s4, s5));
+    private  ArrayList<List> services = new ArrayList<List>(Arrays.asList(s1, s2, s3, s4, s5));
 
     public Clinic(){ }
 
@@ -19,6 +19,9 @@ public class Clinic {
     }
 
     public boolean addService(String service, String r){
+        if(service.equals("")){
+            return false;
+        }
         List<String> new_service = new ArrayList<>(Arrays.asList(service, r));
         if (services.contains(new_service)){
             return false;
@@ -30,6 +33,9 @@ public class Clinic {
     }
 
     public boolean deleteService(String service, String r){
+        if(service.equals("")){
+            return false;
+        }
         List<String> new_service = new ArrayList<>(Arrays.asList(service, r));
         if(services.contains(new_service)){
             services.remove(new_service);

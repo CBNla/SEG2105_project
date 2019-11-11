@@ -17,44 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Which service are you going to edit"
+            android:hint="Which service are you going to delete"
             android:inputType="textPersonName" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Who provide this service" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/nurseBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nurese" />
-
-            <RadioButton
-                android:id="@+id/doctorBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Doctor" />
-
-            <RadioButton
-                android:id="@+id/staffBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Staff" />
-        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"

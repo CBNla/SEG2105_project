@@ -24,6 +24,8 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String createServiceTable = "create table Service(" + "service varchar(50)," + "role varchar(50)," + "primary key(service))";
+        db.execSQL(createServiceTable);
         String createClientTable = "create table Client(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "age int," + "primary key(userName))";
         db.execSQL(createClientTable);
         String createEmployeeTable = "create table Employee(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "primary key(UserName))";
@@ -36,6 +38,27 @@ public class DataBase extends SQLiteOpenHelper {
         values.put("password", new_password);
         values.put("name", "admin");
         db.insert("Admin", null, values);
+
+        values = new ContentValues();
+        values.put("service", "Injection");
+        values.put("role", " by nurse");
+        db.insert("Service", null, values);
+        values = new ContentValues();
+        values.put("service", "Sell medicine");
+        values.put("role", " by staff");
+        db.insert("Service", null, values);
+        values = new ContentValues();
+        values.put("service", "Infusion");
+        values.put("role", " by nurse");
+        db.insert("Service", null, values);
+        values = new ContentValues();
+        values.put("service", "Tooth extraction");
+        values.put("role", " by doctor");
+        db.insert("Service", null, values);
+        values = new ContentValues();
+        values.put("service", "Optometry");
+        values.put("role", " by staff");
+        db.insert("Service", null, values);
     }
 
     @Override
@@ -43,7 +66,76 @@ public class DataBase extends SQLiteOpenHelper {
         String sqlC = "delete table if exists Client";
         String sqlE = "delete table if exists Employee";
         String sqlA = "delete table if exists Admin";
+        String sqlS = "delete table if exists Service";
         onCreate(db);
+    }
+
+    public boolean serviceExist(String service){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "select service, role from Service where service = \"" + service +"\"";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            db.close();
+            return true;
+        }
+        else {
+            cursor.close();
+            db.close();
+            return false;
+        }
+    }
+
+    public boolean addService(String s, String r){
+        if(serviceExist(s)){
+            return false;
+        }
+        else{
+            SQLiteDatabase database = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("service", s);
+            values.put("role", r);
+            database.insert("Service", null, values);
+            database.close();
+            return true;
+        }
+    }
+
+    public boolean deleteService(String s){
+        if(serviceExist(s)){
+            SQLiteDatabase database = getWritableDatabase();
+            String removeElement = "DELETE FROM Service  WHERE service = \"" + s + "\"";
+            database.execSQL(removeElement);
+            database.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean editService(String service, String new_service, String r){
+        return this.deleteService(service) && this.addService(new_service, r);
+    }
+
+    public String[] showServices(){
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery("select service, role from Service", null);
+        String[] result = new String[cursor.getCount()];
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                String s = cursor.getString(0) + cursor.getString(1);
+                result[i] = s;
+                cursor.moveToNext();
+            }
+        }
+        else{
+            result = null;
+        }
+        cursor.close();
+        database.close();
+        return result;
     }
 
     public void insertClient(Clients client){
