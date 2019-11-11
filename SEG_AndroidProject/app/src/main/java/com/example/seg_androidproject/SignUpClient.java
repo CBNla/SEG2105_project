@@ -159,9 +159,11 @@ public class SignUpClient extends AppCompatActivity {
                 return;
             }
             else{
-                client.setUserName(userName.getText().toString());
-                client.setPassword(password.getText().toString());
-                client.setName(name.getText().toString());
+                client.setUserName(userNameS);
+                client.setPassword(passwordS);
+                client.setName(nameS);
+                int i = Integer.parseInt(ageS);
+                client.setAge(i);
                 dataBase.insertClient(client);
                 Toast.makeText(SignUpClient.this, "Success!!!", Toast.LENGTH_LONG).show();
                 finish();
