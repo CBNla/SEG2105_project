@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/Project2/SEG_AndroidProject
+    docker:
+      - image: circleci/android:api-29-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "Project2/SEG_AndroidProject/build.gradle" }}-{{ checksum  "Project2/SEG_AndroidProject/app/build.gradle" }}
+      - run:
+         name: Chmod permissions  
+         command: sudo chmod +x ./Project2/SEG_AndroidProject/gradlew
+      - run:
+          name: Download Dependencies
+          command: cd Project2/SEG_AndroidProject;./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "Project2/SEG_AndroidProject/build.gradle" }}-{{ checksum  "Project2/SEG_AndroidProject/app/build.gradle" }}
+      - run:
+          name: Run UnitTest
+          command: cd Project2/SEG_AndroidProject;./gradlew test
+      - store_artifacts:
+          path: Project2/SEG_AndroidProject/app/build/outputs/apk/debug/
+          destination: apks/
+      - store_test_results:
+          path: Project2/SEG_AndroidProject/app/build/test-results
