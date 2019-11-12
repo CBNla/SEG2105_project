@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class EmployeeLogin extends AppCompatActivity {
@@ -16,5 +17,10 @@ public class EmployeeLogin extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         TextView textView = (TextView)findViewById(R.id.textView5);
         textView.setText("Welcome " + name + "! You are logged in as employee");
+    }
+
+    public void editProfileOnClick(View view){
+        Intent intent = new Intent(this, editEmployeeProfiles.class);
+        startActivity(intent);
     }
 }
