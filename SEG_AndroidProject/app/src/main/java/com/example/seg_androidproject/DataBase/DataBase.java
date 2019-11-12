@@ -28,7 +28,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(createServiceTable);
         String createClientTable = "create table Client(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "age int," + "primary key(userName))";
         db.execSQL(createClientTable);
-        String createEmployeeTable = "create table Employee(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "primary key(UserName))";
+        String createEmployeeTable = "create table Employee(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "address varchar(50)," + "phoneNum int," + "nameOfClinic varchar(50)," + "insuranceTypes varchar(50)," + "paymentMethod varchar(50)," + "primary key(UserName))";
         db.execSQL(createEmployeeTable);
         String createAdminTable = "create table Admin(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "primary key(userName))";
         db.execSQL(createAdminTable);
@@ -204,6 +204,11 @@ public class DataBase extends SQLiteOpenHelper {
         values.put("userName", employee.getUserName());
         values.put("password", encrypted);
         values.put("name", employee.getName());
+        values.put("address", employee.getAddress());
+        values.put("phoneNum", employee.getPhoneNum());
+        values.put("nameOfClinic", employee.getNameOfClinic());
+        values.put("insuranceTypes", employee.getInsuranceTypes());
+        values.put("paymentMethod", employee.getPaymentMethod());
         database.insert("Employee", null, values);
         database.close();
     }
