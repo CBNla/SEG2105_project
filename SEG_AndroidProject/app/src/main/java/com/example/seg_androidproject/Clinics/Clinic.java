@@ -47,8 +47,6 @@ public class Clinic {
     }
 
     public boolean editService(String service, String new_service, String r){
-        boolean i = this.deleteService(service, r);
-        boolean j = this.addService(new_service, r);
-        return i && j;
+        return this.deleteService(service, r) && this.addService(new_service, r);
     }
 }

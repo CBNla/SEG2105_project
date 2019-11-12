@@ -4,6 +4,11 @@ public class Employee {
     private String userName;
     private String password;
     private String name;
+    private String address;
+    private int phoneNum;
+    private String nameOfClinic;
+    private String insuranceTypes;
+    private String paymentMethod;
 
     public Employee(){}
 
@@ -35,5 +40,45 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
+    public void setPhoneNum(int phoneNum){
+        this.phoneNum = phoneNum;
+    }
+
+    public int getPhoneNum(){
+        return phoneNum;
+    }
+
+    public void setNameOfClinic(String nameOfClinic){
+        this.nameOfClinic = nameOfClinic;
+    }
+
+    public String getNameOfClinic(){
+        return nameOfClinic;
+    }
+
+    public void setInsuranceTypes(String insuranceTypes){
+        this.insuranceTypes = insuranceTypes;
+    }
+
+    public String getInsuranceTypes(){
+        return insuranceTypes;
+    }
+
+    public void setPaymentMethod(String paymentMethod){
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethod(){
+        return paymentMethod;
     }
 }
