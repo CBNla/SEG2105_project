@@ -13,6 +13,7 @@ import com.example.seg_androidproject.Clinics.Employee;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class DataBase extends SQLiteOpenHelper {
     private static final String NAMEofDataBase = "ClinicDataBase.db";
@@ -24,7 +25,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createServiceTable = "create table Service(" + "service varchar(50)," + "role varchar(50)," + "primary key(service))";
+        String createServiceTable = "create table Service(" + "service varchar(50)," + "role varchar(50)," + "person varchar(50)" + "primary key(service))";
         db.execSQL(createServiceTable);
         String createClientTable = "create table Client(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "age int," + "primary key(userName))";
         db.execSQL(createClientTable);
@@ -102,6 +103,22 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
+    public boolean addService(String s, String r, String p){
+        if(serviceExist(s)){
+            return false;
+        }
+        else{
+            SQLiteDatabase database = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("service", s);
+            values.put("role", r);
+            values.put("person", p);
+            database.insert("Service", null, values);
+            database.close();
+            return true;
+        }
+    }
+
     public boolean deleteService(String s){
         if(serviceExist(s)){
             SQLiteDatabase database = getWritableDatabase();
@@ -119,6 +136,10 @@ public class DataBase extends SQLiteOpenHelper {
         return this.deleteService(service) && this.addService(new_service, r);
     }
 
+    public boolean editService(String service, String new_service, String r, String p){
+        return this.deleteService(service) && this.addService(new_service, r, p);
+    }
+
     public String[] showServices(){
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select service, role from Service", null);
@@ -128,6 +149,28 @@ public class DataBase extends SQLiteOpenHelper {
             for (int i = 0; i < cursor.getCount(); i++) {
                 String s = cursor.getString(0) + cursor.getString(1);
                 result[i] = s;
+                cursor.moveToNext();
+            }
+        }
+        else{
+            result = null;
+        }
+        cursor.close();
+        database.close();
+        return result;
+    }
+
+    public ArrayList<String> findService(String name){
+        ArrayList<String> result = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery("select service, role, person from Service", null);
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                if(cursor.getString(2).equals(name)) {
+                    String s = cursor.getString(0) + cursor.getString(1);
+                    result.add(s);
+                }
                 cursor.moveToNext();
             }
         }

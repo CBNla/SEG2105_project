@@ -24,13 +24,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/changeBtn"
@@ -38,5 +38,20 @@
             android:layout_height="wrap_content"
             android:onClick="editProfileOnClick"
             android:text="Edit you profiles" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sOnClick"
+            android:text="Show all your services" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="EYSOnClick"
+            android:text="Edit the services you provide" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

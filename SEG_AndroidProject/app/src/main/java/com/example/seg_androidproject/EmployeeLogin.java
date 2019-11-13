@@ -44,4 +44,14 @@ public class EmployeeLogin extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void EYSOnClick(View view){
+        Intent intent = new Intent(this, editEmployeeProfiles.class);
+        intent.putExtra("userName", userName);
+        startActivity(intent);
+    }
+
+    public void SYSOnClick(View view){
+
+    }
 }

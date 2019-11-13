@@ -14,9 +14,7 @@ import com.example.seg_androidproject.Clinics.Employee;
 import com.example.seg_androidproject.DataBase.DataBase;
 
 public class editEmployeeProfiles extends AppCompatActivity {
-    private Employee employee = new Employee();
     private String userName;
-    private Employee employee_old;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +22,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
         setContentView(R.layout.activity_edit_employee_profiles);
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
-        //DataBase dataBase = new DataBase(this);
-        //employee_old = dataBase.getEmployee(userName);
-        //employee.setUserName(userName);
     }
 
     public void doneEditOnClick(View view){
@@ -210,8 +205,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
             }
             dataBase.update("Employee", "paymentMethod", paymentS);
         }
-        //dataBase.remove("Employee", userName);
-        //dataBase.insertEmployee(employee);
         dataBase.close();
         Toast.makeText(editEmployeeProfiles.this, "Success!!! Please login again.", Toast.LENGTH_LONG).show();
         finish();
