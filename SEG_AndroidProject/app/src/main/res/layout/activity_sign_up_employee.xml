@@ -48,19 +48,19 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/eddressText"
+            android:id="@+id/addressText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Eddress"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/phoneNumEText"
+            android:id="@+id/phoneNumText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Phone number (ten digits)"
+            android:hint="Phone number"
             android:inputType="textPersonName" />
 
         <EditText
@@ -72,7 +72,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/insuranceEText"
+            android:id="@+id/insuranceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,11 +80,11 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/paymentEText"
+            android:id="@+id/paymentText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Payment method accepted"
+            android:hint="Payment method"
             android:inputType="textPersonName" />
 
         <TextView
