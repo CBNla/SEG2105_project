@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DataBase dataBase = new DataBase(this);
     }
 
     public void loginOnClick(View view){
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             String name = employee.getName();
             Intent intent = new Intent(this, EmployeeLogin.class);
             intent.putExtra("Name", name);
+            intent.putExtra("userName", employee.getUserName());
             startActivity(intent);
         }
         else if(admin != null){

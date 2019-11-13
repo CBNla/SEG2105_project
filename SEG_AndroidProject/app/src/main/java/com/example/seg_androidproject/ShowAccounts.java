@@ -15,8 +15,8 @@ public class ShowAccounts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_accounts);
         DataBase dataBase = new DataBase(this);
-        String[] accountsC = dataBase.showC();
-        String[] accountsE = dataBase.showE();
+        String[] accountsC = dataBase.showAllClients();
+        String[] accountsE = dataBase.showAllEmployees();
         TextView textView = (TextView)findViewById(R.id.textView9);
         if (accountsC == null && accountsE == null) {
             textView.setText("There is no account yet.");

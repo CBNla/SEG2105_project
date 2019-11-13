@@ -70,6 +70,7 @@ public class DataBase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //Service Functions
     public boolean serviceExist(String service){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "select service, role from Service where service = \"" + service +"\"";
@@ -138,6 +139,7 @@ public class DataBase extends SQLiteOpenHelper {
         return result;
     }
 
+    //Client Functions
     public void insertClient(Clients client){
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -150,14 +152,7 @@ public class DataBase extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void remove(String table, String uName){
-        SQLiteDatabase database = getWritableDatabase();
-        String removeElement = "DELETE FROM " + table + " WHERE userName = \"" + uName + "\"";
-        database.execSQL(removeElement);
-        database.close();
-    }
-
-    public String[] showC(){
+    public String[] showAllClients(){
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select userName, name, age from Client", null);
         String[] result = new String[cursor.getCount()];
@@ -177,7 +172,40 @@ public class DataBase extends SQLiteOpenHelper {
         return result;
     }
 
-    public String[] showE(){
+    public Clients clientExist(String userName, String password){
+        SQLiteDatabase db = getReadableDatabase();
+        String new_password = encrypt(password);
+        String sql = "select userName, password, name, age from Client where userName = \"" + userName +"\"" + "and password = \"" + new_password + "\"";
+        Cursor cursor = db.rawQuery(sql, null);
+        Clients client = new Clients();
+        if (cursor.moveToFirst()) {
+            client.setUserName(cursor.getString(0));
+            client.setPassword(cursor.getString(1));
+            client.setName(cursor.getString(2));
+            client.setAge(cursor.getInt(3)) ;
+        }
+        else {
+            client = null;
+        }
+        cursor.close();
+        db.close();
+        return client;
+    }
+
+    public boolean cExist(String userName){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "select userName, password, name, age from Client where userName = \"" + userName +"\"";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    //Employee Functions
+    public String[] showAllEmployees(){
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select userName, name from Employee", null);
         String[] result = new String[cursor.getCount()];
@@ -213,38 +241,6 @@ public class DataBase extends SQLiteOpenHelper {
         database.close();
     }
 
-    public Clients clientExist(String userName, String password){
-        SQLiteDatabase db = getReadableDatabase();
-        String new_password = encrypt(password);
-        String sql = "select userName, password, name, age from Client where userName = \"" + userName +"\"" + "and password = \"" + new_password + "\"";
-        Cursor cursor = db.rawQuery(sql, null);
-        Clients client = new Clients();
-        if (cursor.moveToFirst()) {
-            client.setUserName(cursor.getString(0));
-            client.setPassword(cursor.getString(1));
-            client.setName(cursor.getString(2));
-            client.setAge(cursor.getInt(3)) ;
-        }
-        else {
-            client = null;
-        }
-        cursor.close();
-        db.close();
-        return client;
-    }
-
-    public boolean cExist(String userName){
-        SQLiteDatabase db = getReadableDatabase();
-        String sql = "select userName, password, name, age from Client where userName = \"" + userName +"\"";
-        Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToFirst()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
     public Employee employeeExist(String userName, String password){
         SQLiteDatabase db = getReadableDatabase();
         String new_password = encrypt(password);
@@ -276,6 +272,30 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
+    public Employee getEmployee(String userName){
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery("select userName, password, name, address, phoneNum, nameOfClinic, insuranceTypes, paymentMethod from Employee where userName = \"" + userName + "\"", null);
+        cursor.moveToFirst();
+        Employee employee = new Employee();
+        if (cursor.moveToFirst()) {
+            employee.setUserName(cursor.getString(0));
+            employee.setPassword(cursor.getString(1));
+            employee.setName(cursor.getString(2));
+            employee.setAddress(cursor.getString(3));
+            employee.setPhoneNum(cursor.getInt(4));
+            employee.setNameOfClinic(cursor.getString(5));
+            employee.setInsuranceTypes(cursor.getString(6));
+            employee.setPaymentMethod(cursor.getString(7));
+        }
+        else {
+            employee = null;
+        }
+        cursor.close();
+        database.close();
+        return employee;
+    }
+
+    //Admin Functions
     public Admin adminExist(String userName, String password){
         String p = encrypt("5T5ptQ");
         Admin admin = new Admin();
@@ -286,6 +306,14 @@ public class DataBase extends SQLiteOpenHelper {
         else{
             return null;
         }
+    }
+
+    //Public Functions
+    public void remove(String table, String uName){
+        SQLiteDatabase database = getWritableDatabase();
+        String removeElement = "DELETE FROM " + table + " WHERE userName = \"" + uName + "\"";
+        database.execSQL(removeElement);
+        database.close();
     }
 
     private String convertToHexString(byte data[]) {
