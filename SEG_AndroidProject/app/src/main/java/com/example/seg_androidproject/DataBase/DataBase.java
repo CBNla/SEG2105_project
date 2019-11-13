@@ -136,10 +136,6 @@ public class DataBase extends SQLiteOpenHelper {
         return this.deleteService(service) && this.addService(new_service, r);
     }
 
-    public boolean editService(String service, String new_service, String r, String p){
-        return this.deleteService(service) && this.addService(new_service, r, p);
-    }
-
     public String[] showServices(){
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select service, role from Service", null);
@@ -167,6 +163,10 @@ public class DataBase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         if(cursor.getCount() > 0) {
             for (int i = 0; i < cursor.getCount(); i++) {
+                if(cursor.getString(2) == null){
+                    cursor.moveToNext();
+                    break;
+                }
                 if(cursor.getString(2).equals(name)) {
                     String s = cursor.getString(0) + cursor.getString(1);
                     result.add(s);

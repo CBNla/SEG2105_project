@@ -51,7 +51,7 @@ public class EditServicesEmployee extends AppCompatActivity {
         }
         else if(delete.isChecked()){
             if(dataBase.serviceExist(deleteService.getText().toString())){
-                dataBase.update("Service", "service", addService.getText().toString(), "person", "");
+                dataBase.update("Service", "service", addService.getText().toString(), "person", null);
                 Toast.makeText(EditServicesEmployee.this, "Success!!!", Toast.LENGTH_LONG).show();
                 finish();
             }

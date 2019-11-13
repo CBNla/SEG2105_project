@@ -13,8 +13,11 @@ import android.widget.TextView;
 import com.example.seg_androidproject.Clinics.Employee;
 import com.example.seg_androidproject.DataBase.DataBase;
 
+import java.util.ArrayList;
+
 public class EmployeeLogin extends AppCompatActivity {
     private String userName;
+    private Employee employee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,7 @@ public class EmployeeLogin extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         userName = intent.getStringExtra("userName");
         DataBase dataBase = new DataBase(this);
-        Employee employee = dataBase.getEmployee(userName);
+        employee = dataBase.getEmployee(userName);
         String address = employee.getAddress();
         int phoneNum = employee.getPhoneNum();
         String nameOfClinic = employee.getNameOfClinic();
@@ -52,6 +55,8 @@ public class EmployeeLogin extends AppCompatActivity {
     }
 
     public void SYSOnClick(View view){
-
+        DataBase dataBase = new DataBase(this);
+        ArrayList<String> services = dataBase.findService(employee.getName());
+        System.out.println(services);
     }
 }
