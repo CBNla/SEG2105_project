@@ -342,6 +342,7 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     public void update(String table, String which, String s){
-
+        String updateStr = "update " + table + " set " + which + "=" + "\"" + s + "\"";
+        getWritableDatabase().execSQL(updateStr);
     }
 }

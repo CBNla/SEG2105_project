@@ -24,9 +24,9 @@ public class editEmployeeProfiles extends AppCompatActivity {
         setContentView(R.layout.activity_edit_employee_profiles);
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
-        DataBase dataBase = new DataBase(this);
-        employee_old = dataBase.getEmployee(userName);
-        employee.setUserName(userName);
+        //DataBase dataBase = new DataBase(this);
+        //employee_old = dataBase.getEmployee(userName);
+        //employee.setUserName(userName);
     }
 
     public void doneEditOnClick(View view){
@@ -88,10 +88,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setName(nameS);
-        }
-        else{
-            employee.setName(employee_old.getName());
+            dataBase.update("Employee", "name", nameS);
         }
         if(!addressS.equals("")) {
             for (int i = 0; i <= addressS.length() - 1; i++) {
@@ -115,10 +112,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setAddress(addressS);
-        }
-        else{
-            employee.setAddress(employee_old.getAddress());
+            dataBase.update("Employee", "address", addressS);
         }
         if(!phoneNumS.equals("")) {
             for (int i = 0; i <= phoneNumS.length() - 1; i++) {
@@ -142,10 +136,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setPhoneNum(Integer.parseInt(phoneNumS));
-        }
-        else{
-            employee.setPhoneNum(employee_old.getPhoneNum());
+            dataBase.update("Employee", "phoneNum", phoneNumS);
         }
         if(!nameOfClinicS.equals("")) {
             for (int i = 0; i <= nameOfClinicS.length() - 1; i++) {
@@ -169,10 +160,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setNameOfClinic(nameOfClinicS);
-        }
-        else{
-            employee.setNameOfClinic(employee_old.getNameOfClinic());
+            dataBase.update("Employee", "nameOfClinic", nameOfClinicS);
         }
         if(!insuranceS.equals("")) {
             for (int i = 0; i <= insuranceS.length() - 1; i++) {
@@ -196,10 +184,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setInsuranceTypes(insuranceS);
-        }
-        else{
-            employee.setInsuranceTypes(employee_old.getInsuranceTypes());
+            dataBase.update("Employee", "insuranceTypes", insuranceS);
         }
         if(!paymentS.equals("")) {
             for (int i = 0; i <= paymentS.length() - 1; i++) {
@@ -223,13 +208,11 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setPaymentMethod(paymentS);
+            dataBase.update("Employee", "paymentMethod", paymentS);
         }
-        else{
-            employee.setPaymentMethod(employee_old.getPaymentMethod());
-        }
-        dataBase.remove("Employee", userName);
-        dataBase.insertEmployee(employee);
+        //dataBase.remove("Employee", userName);
+        //dataBase.insertEmployee(employee);
+        dataBase.close();
         Toast.makeText(editEmployeeProfiles.this, "Success!!! Please login again.", Toast.LENGTH_LONG).show();
         finish();
     }
