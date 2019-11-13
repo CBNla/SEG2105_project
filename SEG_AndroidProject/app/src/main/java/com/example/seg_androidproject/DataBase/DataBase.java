@@ -340,4 +340,8 @@ public class DataBase extends SQLiteOpenHelper {
         }
         return null;
     }
+
+    public void update(String table, String which, String s){
+
+    }
 }

@@ -29,14 +29,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/passwordEText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/nameEText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

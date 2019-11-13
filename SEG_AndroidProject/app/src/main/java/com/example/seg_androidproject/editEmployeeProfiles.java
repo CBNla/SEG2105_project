@@ -14,35 +14,25 @@ import com.example.seg_androidproject.Clinics.Employee;
 import com.example.seg_androidproject.DataBase.DataBase;
 
 public class editEmployeeProfiles extends AppCompatActivity {
+    private Employee employee = new Employee();
     private String userName;
-    private Employee employee;
     private Employee employee_old;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_employee_profiles);
-        DataBase dataBase = new DataBase(this);
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
-        //employee.setUserName(userName);
+        DataBase dataBase = new DataBase(this);
         employee_old = dataBase.getEmployee(userName);
+        employee.setUserName(userName);
     }
 
     public void doneEditOnClick(View view){
         System.out.print(userName);
         DataBase dataBase = new DataBase(this);
-/*
-        String passwordS = "";
-        String nameS = "";
-        String addressS = "";
-        String phoneNumS = "";
-        int phoneNumI = 0;
-        String nameOfClinicS = "";
-        String insuranceS = "";
-        String paymentS = "";
-*/
-        EditText password = (EditText) findViewById(R.id.passwordEText);
+
         EditText name = (EditText) findViewById(R.id.nameEText);
         EditText address = (EditText) findViewById(R.id.addressEText);
         EditText phoneNum = (EditText) findViewById(R.id.phoneNumEText);
@@ -50,29 +40,14 @@ public class editEmployeeProfiles extends AppCompatActivity {
         EditText insuranceType = (EditText) findViewById(R.id.insuranceEText);
         EditText paymentMethod = (EditText) findViewById(R.id.paymentEText);
 
-        String passwordS = password.getText().toString();
+        String nameS = name.getText().toString();
+        String addressS = address.getText().toString();
+        String phoneNumS = phoneNum.getText().toString();
+        String nameOfClinicS = nameOfClinic.getText().toString();
+        String insuranceS = insuranceType.getText().toString();
+        String paymentS = paymentMethod.getText().toString();
 
-        //if(name != null){
-            String nameS = name.getText().toString();
-        //}
-        //if(address != null){
-            String addressS = address.getText().toString();
-        //}
-        //if(phoneNum != null){
-            String phoneNumS = phoneNum.getText().toString();
-            int phoneNumI = Integer.parseInt(phoneNumS);
-        //}
-        //if(nameOfClinic != null){
-            String nameOfClinicS = nameOfClinic.getText().toString();
-        //}
-        //if(insuranceType != null){
-            String insuranceS = insuranceType.getText().toString();
-        //}
-        //if(paymentMethod != null){
-            String paymentS = paymentMethod.getText().toString();
-        //}
-
-        if(passwordS.length() > 50 || nameS.length() > 50 || addressS.length() > 50 || phoneNumS.length() > 10 || nameOfClinicS.length() > 50 || insuranceS.length() > 50 || paymentS.length() > 50){
+        if(nameS.length() > 50 || addressS.length() > 50 || phoneNumS.length() > 10 || nameOfClinicS.length() > 50 || insuranceS.length() > 50 || paymentS.length() > 50){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Invalid Input");
             builder.setMessage("The information you entered are too long, please try again.");
@@ -81,7 +56,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                 public void onClick(DialogInterface arg0, int arg1){}
             });
             AlertDialog b = builder.create();
-            password.setText("");
             name.setText("");
             address.setText("");
             phoneNum.setText("");
@@ -92,31 +66,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
             return;
         }
 
-        if(!passwordS.equals("")) {
-            for (int i = 0; i <= passwordS.length() - 1; i++) {
-                if (!Character.isDigit(passwordS.charAt(i)) && !Character.isLetter(passwordS.charAt(i))) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Invalid Input");
-                    builder.setMessage("The information you entered are invalid, please try again.");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface arg0, int arg1) {
-                        }
-                    });
-                    AlertDialog b = builder.create();
-                    password.setText("");
-                    name.setText("");
-                    address.setText("");
-                    phoneNum.setText("");
-                    insuranceType.setText("");
-                    nameOfClinic.setText("");
-                    paymentMethod.setText("");
-                    b.show();
-                    return;
-                }
-            }
-            employee.setPassword(passwordS);
-        }
         if(!nameS.equals("")) {
             for (int i = 0; i <= nameS.length() - 1; i++) {
                 if (!Character.isDigit(nameS.charAt(i)) && !Character.isLetter(nameS.charAt(i))) {
@@ -129,7 +78,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -141,6 +89,9 @@ public class editEmployeeProfiles extends AppCompatActivity {
                 }
             }
             employee.setName(nameS);
+        }
+        else{
+            employee.setName(employee_old.getName());
         }
         if(!addressS.equals("")) {
             for (int i = 0; i <= addressS.length() - 1; i++) {
@@ -154,7 +105,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -166,6 +116,9 @@ public class editEmployeeProfiles extends AppCompatActivity {
                 }
             }
             employee.setAddress(addressS);
+        }
+        else{
+            employee.setAddress(employee_old.getAddress());
         }
         if(!phoneNumS.equals("")) {
             for (int i = 0; i <= phoneNumS.length() - 1; i++) {
@@ -179,7 +132,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -190,7 +142,10 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            employee.setPhoneNum(phoneNumI);
+            employee.setPhoneNum(Integer.parseInt(phoneNumS));
+        }
+        else{
+            employee.setPhoneNum(employee_old.getPhoneNum());
         }
         if(!nameOfClinicS.equals("")) {
             for (int i = 0; i <= nameOfClinicS.length() - 1; i++) {
@@ -204,7 +159,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -216,6 +170,9 @@ public class editEmployeeProfiles extends AppCompatActivity {
                 }
             }
             employee.setNameOfClinic(nameOfClinicS);
+        }
+        else{
+            employee.setNameOfClinic(employee_old.getNameOfClinic());
         }
         if(!insuranceS.equals("")) {
             for (int i = 0; i <= insuranceS.length() - 1; i++) {
@@ -229,7 +186,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -241,6 +197,9 @@ public class editEmployeeProfiles extends AppCompatActivity {
                 }
             }
             employee.setInsuranceTypes(insuranceS);
+        }
+        else{
+            employee.setInsuranceTypes(employee_old.getInsuranceTypes());
         }
         if(!paymentS.equals("")) {
             for (int i = 0; i <= paymentS.length() - 1; i++) {
@@ -254,7 +213,6 @@ public class editEmployeeProfiles extends AppCompatActivity {
                         }
                     });
                     AlertDialog b = builder.create();
-                    password.setText("");
                     name.setText("");
                     address.setText("");
                     phoneNum.setText("");
@@ -267,9 +225,12 @@ public class editEmployeeProfiles extends AppCompatActivity {
             }
             employee.setPaymentMethod(paymentS);
         }
+        else{
+            employee.setPaymentMethod(employee_old.getPaymentMethod());
+        }
         dataBase.remove("Employee", userName);
         dataBase.insertEmployee(employee);
-        Toast.makeText(editEmployeeProfiles.this, "Success!!!", Toast.LENGTH_LONG).show();
+        Toast.makeText(editEmployeeProfiles.this, "Success!!! Please login again.", Toast.LENGTH_LONG).show();
         finish();
     }
 }
