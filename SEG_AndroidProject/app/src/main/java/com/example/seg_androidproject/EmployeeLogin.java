@@ -46,7 +46,7 @@ public class EmployeeLogin extends AppCompatActivity {
     }
 
     public void EYSOnClick(View view){
-        Intent intent = new Intent(this, editEmployeeProfiles.class);
+        Intent intent = new Intent(this, EditServicesEmployee.class);
         intent.putExtra("userName", userName);
         startActivity(intent);
     }

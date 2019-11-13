@@ -83,7 +83,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "name", nameS);
+            dataBase.update("Employee", "userName", userName, "name", nameS);
         }
         if(!addressS.equals("")) {
             for (int i = 0; i <= addressS.length() - 1; i++) {
@@ -107,7 +107,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "address", addressS);
+            dataBase.update("Employee", "userName", userName, "address", addressS);
         }
         if(!phoneNumS.equals("")) {
             for (int i = 0; i <= phoneNumS.length() - 1; i++) {
@@ -131,7 +131,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "phoneNum", phoneNumS);
+            dataBase.update("Employee", "userName", userName, "phoneNum", phoneNumS);
         }
         if(!nameOfClinicS.equals("")) {
             for (int i = 0; i <= nameOfClinicS.length() - 1; i++) {
@@ -155,7 +155,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "nameOfClinic", nameOfClinicS);
+            dataBase.update("Employee", "userName", userName, "nameOfClinic", nameOfClinicS);
         }
         if(!insuranceS.equals("")) {
             for (int i = 0; i <= insuranceS.length() - 1; i++) {
@@ -179,7 +179,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "insuranceTypes", insuranceS);
+            dataBase.update("Employee", "userName", userName, "insuranceTypes", insuranceS);
         }
         if(!paymentS.equals("")) {
             for (int i = 0; i <= paymentS.length() - 1; i++) {
@@ -203,7 +203,7 @@ public class editEmployeeProfiles extends AppCompatActivity {
                     return;
                 }
             }
-            dataBase.update("Employee", "paymentMethod", paymentS);
+            dataBase.update("Employee", "userName", userName, "paymentMethod", paymentS);
         }
         dataBase.close();
         Toast.makeText(editEmployeeProfiles.this, "Success!!! Please login again.", Toast.LENGTH_LONG).show();

@@ -25,7 +25,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createServiceTable = "create table Service(" + "service varchar(50)," + "role varchar(50)," + "person varchar(50)" + "primary key(service))";
+        String createServiceTable = "create table Service(" + "service varchar(50)," + "role varchar(50)," + "person varchar(50)," + "primary key(service))";
         db.execSQL(createServiceTable);
         String createClientTable = "create table Client(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "age int," + "primary key(userName))";
         db.execSQL(createClientTable);
@@ -384,8 +384,8 @@ public class DataBase extends SQLiteOpenHelper {
         return null;
     }
 
-    public void update(String table, String which, String s){
-        String updateStr = "update " + table + " set " + which + "=" + "\"" + s + "\"";
+    public void update(String table, String primaryKeyIs, String primaryKey, String which, String s){
+        String updateStr = "update " + table + " set " + which + " = " + "\"" + s + "\" where " + primaryKeyIs + " = \"" + primaryKey + "\"";
         getWritableDatabase().execSQL(updateStr);
     }
 }
