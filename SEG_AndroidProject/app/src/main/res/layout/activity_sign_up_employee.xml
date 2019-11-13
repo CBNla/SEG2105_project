@@ -48,15 +48,15 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/addressText"
+            android:id="@+id/eddressText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Address"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Name" />
 
         <EditText
-            android:id="@+id/phoneNumText"
+            android:id="@+id/phoneNumEText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -72,7 +72,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/insuranceText"
+            android:id="@+id/insuranceEText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,7 +80,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/paymentText"
+            android:id="@+id/paymentEText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

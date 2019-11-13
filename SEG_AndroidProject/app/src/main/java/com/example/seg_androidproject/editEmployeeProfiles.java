@@ -25,13 +25,14 @@ public class editEmployeeProfiles extends AppCompatActivity {
         DataBase dataBase = new DataBase(this);
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
-        employee.setUserName(userName);
+        //employee.setUserName(userName);
         employee_old = dataBase.getEmployee(userName);
     }
 
     public void doneEditOnClick(View view){
+        System.out.print(userName);
         DataBase dataBase = new DataBase(this);
-
+/*
         String passwordS = "";
         String nameS = "";
         String addressS = "";
@@ -40,37 +41,36 @@ public class editEmployeeProfiles extends AppCompatActivity {
         String nameOfClinicS = "";
         String insuranceS = "";
         String paymentS = "";
+*/
+        EditText password = (EditText) findViewById(R.id.passwordEText);
+        EditText name = (EditText) findViewById(R.id.nameEText);
+        EditText address = (EditText) findViewById(R.id.addressEText);
+        EditText phoneNum = (EditText) findViewById(R.id.phoneNumEText);
+        EditText nameOfClinic = (EditText) findViewById(R.id.nameOfClinicEText);
+        EditText insuranceType = (EditText) findViewById(R.id.insuranceEText);
+        EditText paymentMethod = (EditText) findViewById(R.id.paymentEText);
 
-        EditText password = (EditText) findViewById(R.id.Password);
-        EditText name = (EditText) findViewById(R.id.Name);
-        EditText address = (EditText) findViewById(R.id.addressText);
-        EditText phoneNum = (EditText) findViewById(R.id.phoneNumText);
-        EditText nameOfClinic = (EditText) findViewById(R.id.nameOfClickText);
-        EditText insuranceType = (EditText) findViewById(R.id.insuranceText);
-        EditText paymentMethod = (EditText) findViewById(R.id.paymentText);
+        String passwordS = password.getText().toString();
 
-        if(password != null){
-            passwordS = password.getText().toString();
-        }
-        if(name != null){
-            nameS = name.getText().toString();
-        }
-        if(address != null){
-            addressS = address.getText().toString();
-        }
-        if(phoneNum != null){
-            phoneNumS = phoneNum.getText().toString();
-            phoneNumI = Integer.parseInt(phoneNumS);
-        }
-        if(nameOfClinic != null){
-            nameOfClinicS = nameOfClinic.getText().toString();
-        }
-        if(insuranceType != null){
-            insuranceS = insuranceType.getText().toString();
-        }
-        if(paymentMethod != null){
-            paymentS = paymentMethod.getText().toString();
-        }
+        //if(name != null){
+            String nameS = name.getText().toString();
+        //}
+        //if(address != null){
+            String addressS = address.getText().toString();
+        //}
+        //if(phoneNum != null){
+            String phoneNumS = phoneNum.getText().toString();
+            int phoneNumI = Integer.parseInt(phoneNumS);
+        //}
+        //if(nameOfClinic != null){
+            String nameOfClinicS = nameOfClinic.getText().toString();
+        //}
+        //if(insuranceType != null){
+            String insuranceS = insuranceType.getText().toString();
+        //}
+        //if(paymentMethod != null){
+            String paymentS = paymentMethod.getText().toString();
+        //}
 
         if(passwordS.length() > 50 || nameS.length() > 50 || addressS.length() > 50 || phoneNumS.length() > 10 || nameOfClinicS.length() > 50 || insuranceS.length() > 50 || paymentS.length() > 50){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
