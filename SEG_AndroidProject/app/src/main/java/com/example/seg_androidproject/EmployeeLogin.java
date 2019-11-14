@@ -1,7 +1,9 @@
 package com.example.seg_androidproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,7 +58,29 @@ public class EmployeeLogin extends AppCompatActivity {
 
     public void SYSOnClick(View view){
         DataBase dataBase = new DataBase(this);
-        ArrayList<String> services = dataBase.findService(employee.getName());
-        System.out.println(services);
+        ArrayList<String> services = dataBase.showService(employee.getName());
+        String service = "";
+        for(int i = 0; i < services.size(); i++){
+            service += i+1;
+            service += ". ";
+            if(i != services.size()){
+                service += services.get(i);
+                service += "\n";
+            }
+            else{
+                service += services.get(i);
+            }
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String name = employee.getName();
+        builder.setTitle("All the services provided by " + name);
+        builder.setMessage(service);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface arg0, int arg1){}
+        });
+        AlertDialog b = builder.create();
+        b.show();
     }
 }

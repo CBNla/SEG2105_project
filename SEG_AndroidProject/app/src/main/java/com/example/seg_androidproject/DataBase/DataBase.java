@@ -156,7 +156,7 @@ public class DataBase extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<String> findService(String name){
+    public ArrayList<String> showService(String name){
         ArrayList<String> result = new ArrayList<>();
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select service, role, person from Service", null);
@@ -168,7 +168,7 @@ public class DataBase extends SQLiteOpenHelper {
                     break;
                 }
                 if(cursor.getString(2).equals(name)) {
-                    String s = cursor.getString(0) + cursor.getString(1);
+                    String s = cursor.getString(0);
                     result.add(s);
                 }
                 cursor.moveToNext();
@@ -385,7 +385,7 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     public void update(String table, String primaryKeyIs, String primaryKey, String which, String s){
-        String updateStr = "update " + table + " set " + which + " = " + "\"" + s + "\" where " + primaryKeyIs + " = \"" + primaryKey + "\"";
+        String updateStr = "update " + table + " set " + which + " = " + "\'" + s + "\' where " + primaryKeyIs + " = \'" + primaryKey + "\'";
         getWritableDatabase().execSQL(updateStr);
     }
 }
