@@ -30,7 +30,8 @@
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp" />
+            android:gravity="center"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/changeBtn"
@@ -52,6 +53,12 @@
             android:layout_height="wrap_content"
             android:onClick="EYSOnClick"
             android:text="Edit the services you provide" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set your working hours" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

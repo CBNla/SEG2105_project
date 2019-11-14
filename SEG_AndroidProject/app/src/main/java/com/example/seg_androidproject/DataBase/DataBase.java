@@ -29,7 +29,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(createServiceTable);
         String createClientTable = "create table Client(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "age int," + "primary key(userName))";
         db.execSQL(createClientTable);
-        String createEmployeeTable = "create table Employee(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "address varchar(50)," + "phoneNum int," + "nameOfClinic varchar(50)," + "insuranceTypes varchar(50)," + "paymentMethod varchar(50)," + "primary key(UserName))";
+        String createEmployeeTable = "create table Employee(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "address varchar(50)," + "phoneNum int," + "nameOfClinic varchar(50)," + "insuranceTypes varchar(50)," + "paymentMethod varchar(50)," + "workingHour varchar(100)," + "primary key(UserName))";
         db.execSQL(createEmployeeTable);
         String createAdminTable = "create table Admin(" + "userName varchar(50)," + "password varchar(50)," + "name varchar(50)," + "primary key(userName))";
         db.execSQL(createAdminTable);
@@ -317,7 +317,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     public Employee getEmployee(String userName){
         SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.rawQuery("select userName, password, name, address, phoneNum, nameOfClinic, insuranceTypes, paymentMethod from Employee where userName = \"" + userName + "\"", null);
+        Cursor cursor = database.rawQuery("select userName, password, name, address, phoneNum, nameOfClinic, insuranceTypes, paymentMethod, workingHour from Employee where userName = \"" + userName + "\"", null);
         cursor.moveToFirst();
         Employee employee = new Employee();
         if (cursor.moveToFirst()) {
@@ -329,6 +329,7 @@ public class DataBase extends SQLiteOpenHelper {
             employee.setNameOfClinic(cursor.getString(5));
             employee.setInsuranceTypes(cursor.getString(6));
             employee.setPaymentMethod(cursor.getString(7));
+            employee.setWorkingHours(cursor.getString(8));
         }
         else {
             employee = null;

@@ -9,6 +9,7 @@ public class Employee {
     private String nameOfClinic;
     private String insuranceTypes;
     private String paymentMethod;
+    private String workingHours;
 
     public Employee(){}
 
@@ -80,5 +81,13 @@ public class Employee {
 
     public String getPaymentMethod(){
         return paymentMethod;
+    }
+
+    public void setWorkingHours(String workingHours){
+        this.workingHours = workingHours;
+    }
+
+    public String getWorkingHours(){
+        return workingHours;
     }
 }

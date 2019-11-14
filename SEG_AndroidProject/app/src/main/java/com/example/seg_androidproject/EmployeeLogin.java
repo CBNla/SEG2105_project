@@ -35,12 +35,15 @@ public class EmployeeLogin extends AppCompatActivity {
         String nameOfClinic = employee.getNameOfClinic();
         String insurance = employee.getInsuranceTypes();
         String paymentMethod = employee.getPaymentMethod();
+        String workingHour = employee.getWorkingHours();
         TextView textView = (TextView)findViewById(R.id.textView5);
         TextView welcome = (TextView)findViewById(R.id.textView17);
         TextView profiles = (TextView)findViewById(R.id.textView16);
         welcome.setText("Welcome " + name + "!\n");
         textView.setText("You are logged in as employee.");
-        profiles.setText("\nYour address is " + address + ".\nYour phone number is " + phoneNum + ".\nYour name of the clinic is " + nameOfClinic + ".\nYour insurance type is " + insurance + ".\nYour payment method is " + paymentMethod);
+        profiles.setText("\nYour address is " + address + ".\nYour phone number is " + phoneNum + ".\nYour name of the clinic is " + nameOfClinic + "." +
+                "\nYour insurance type is " + insurance + ".\nYour payment method is " + paymentMethod +
+                "\nYour working hours are " + workingHour);
     }
 
     public void editProfileOnClick(View view){
@@ -82,5 +85,8 @@ public class EmployeeLogin extends AppCompatActivity {
         });
         AlertDialog b = builder.create();
         b.show();
+    }
+    public void setWorkingHours(View view){
+
     }
 }

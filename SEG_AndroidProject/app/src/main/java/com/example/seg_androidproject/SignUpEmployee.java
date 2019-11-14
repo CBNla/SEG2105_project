@@ -38,7 +38,6 @@ public class SignUpEmployee extends AppCompatActivity {
         String nameS = name.getText().toString();
         String addressS = address.getText().toString();
         String phoneNumS = phoneNum.getText().toString();
-        int phoneNumI = Integer.parseInt(phoneNumS);
         String nameOfClinicS = nameOfClinic.getText().toString();
         String insuranceS = insuranceType.getText().toString();
         String paymentS = paymentMethod.getText().toString();
@@ -286,7 +285,7 @@ public class SignUpEmployee extends AppCompatActivity {
                 employee.setName(name.getText().toString());
                 employee.setAddress(addressS);
                 employee.setInsuranceTypes(insuranceS);
-                employee.setPhoneNum(phoneNumI);
+                employee.setPhoneNum(Integer.parseInt(phoneNumS));
                 employee.setNameOfClinic(nameOfClinicS);
                 employee.setPaymentMethod(paymentS);
                 dataBase.insertEmployee(employee);
