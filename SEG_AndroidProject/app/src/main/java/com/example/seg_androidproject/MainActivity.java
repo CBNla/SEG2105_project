@@ -15,6 +15,8 @@ import com.example.seg_androidproject.Clinics.Employee;
 import com.example.seg_androidproject.DataBase.DataBase;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText userName;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginOnClick(View view){
-        EditText userName = (EditText)findViewById(R.id.userName);
-        EditText password = (EditText)findViewById(R.id.password);
+        userName = (EditText)findViewById(R.id.userName);
+        password = (EditText)findViewById(R.id.password);
 
         DataBase dataBase  = new DataBase(this);
         Clients client = dataBase.clientExist(userName.getText().toString(), password.getText().toString());
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createOnClick(View view) {
+        userName.setText("");
+        password.setText("");
         Intent intent = new Intent(this, EmployeeORClient.class);
         startActivity(intent);
     }

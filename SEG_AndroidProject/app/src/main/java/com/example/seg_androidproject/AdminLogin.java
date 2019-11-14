@@ -20,7 +20,9 @@ public class AdminLogin extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("Name");
         TextView textView = (TextView)findViewById(R.id.textView5);
-        textView.setText("Welcome " + name + "! You are logged in as Admin");
+        TextView welcome = (TextView)findViewById(R.id.textView19);
+        welcome.setText("Welcome " + name + "!");
+        textView.setText("You are logged in as Admin");
     }
 
     public void addOnClick(View view){

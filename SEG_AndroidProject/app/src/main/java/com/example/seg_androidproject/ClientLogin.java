@@ -15,6 +15,8 @@ public class ClientLogin extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("Name");
         TextView textView = (TextView)findViewById(R.id.textView5);
+        TextView welcome = (TextView)findViewById(R.id.textView20);
+        welcome.setText("Welcome "+ name + "!");
         textView.setText("Welcome " + name + "! You are logged in as patient");
     }
 }
