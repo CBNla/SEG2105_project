@@ -5,17 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.location.Address;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seg_androidproject.Clinics.Employee;
 import com.example.seg_androidproject.DataBase.DataBase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 
 public class EmployeeLogin extends AppCompatActivity {
     private String userName;
@@ -87,6 +90,42 @@ public class EmployeeLogin extends AppCompatActivity {
         b.show();
     }
     public void setWorkingHours(View view){
+        final DataBase dataBase = new DataBase(this);
+        LayoutInflater li = LayoutInflater.from(this);
+        View SworkingHour = li.inflate(R.layout.set_working_hours, null);
 
+        //final CalendarView calendarView = (CalendarView)findViewById(R.id.calendarView);
+        //calendarView.isSelected();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setView(SworkingHour);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                CalendarView calendarView = (CalendarView)findViewById(R.id.calendarView);
+                //long currentDate = new Date().getTime();
+                calendarView.setDate(new Date().getTime());
+                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+                    @Override
+                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
+                        String date = year + "年" + month + "月" + dayOfMonth + "日";
+                        Toast.makeText(getApplicationContext(), date, Toast.LENGTH_LONG).show();
+                    }
+                });
+/*
+                ArrayList<String> days = new ArrayList<>(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
+                if(!days.contains(date.getText().toString())){
+                    Toast.makeText(EmployeeLogin.this, "Invalid date", Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
+                }
+
+                String workingHour = date.getText().toString() +
+                dataBase.update("Employee", "userName", userName, "workingHour", );
+
+ */
+            }
+        });
+        AlertDialog b = alertDialogBuilder.create();
+        b.show();
     }
 }
