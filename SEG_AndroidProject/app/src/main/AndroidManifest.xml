@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditServicesEmployee"></activity>
+        <activity android:name=".SetWorkingHoursEnd"></activity>
+        <activity android:name=".SetWorkingHours" />
+        <activity android:name=".EditServicesEmployee" />
         <activity android:name=".editEmployeeProfiles" />
         <activity android:name=".ShowAccounts" />
         <activity android:name=".AccountManager" />
