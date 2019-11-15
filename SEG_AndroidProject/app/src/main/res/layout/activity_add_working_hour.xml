@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetWorkingHoursEnd">
+    tools:context=".addWorkingHour">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,15 +13,15 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="End by:"
+            android:text="Start from:"
             android:textSize="24sp" />
 
         <CalendarView
-            android:id="@+id/calendarView2"
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:firstDayOfWeek="2"
@@ -29,10 +29,10 @@
             android:minDate="01/01/2000" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="SetEndDate"
-            android:text="Finish" />
+            android:onClick="setWorkingHours"
+            android:text="Next" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

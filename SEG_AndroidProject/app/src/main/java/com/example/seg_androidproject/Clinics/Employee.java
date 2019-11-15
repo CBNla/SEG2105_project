@@ -1,5 +1,7 @@
 package com.example.seg_androidproject.Clinics;
 
+import java.util.ArrayList;
+
 public class Employee {
     private String userName;
     private String password;
@@ -9,7 +11,7 @@ public class Employee {
     private String nameOfClinic;
     private String insuranceTypes;
     private String paymentMethod;
-    private String workingHours;
+    private ArrayList<String> workingHours;
 
     public Employee(){}
 
@@ -83,11 +85,15 @@ public class Employee {
         return paymentMethod;
     }
 
-    public void setWorkingHours(String workingHours){
+    public void setWorkingHours(ArrayList<String> workingHours){
         this.workingHours = workingHours;
     }
 
-    public String getWorkingHours(){
+    public ArrayList<String> getWorkingHours(){
         return workingHours;
+    }
+
+    public void addWorkingHour(String workingHour){
+        this.workingHours.add(workingHour);
     }
 }

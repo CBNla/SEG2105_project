@@ -33,13 +33,6 @@
             android:gravity="center"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp" />
-
         <Button
             android:id="@+id/changeBtn"
             android:layout_width="match_parent"
@@ -65,8 +58,22 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="setWorkingHours"
-            android:text="Set your working hours" />
+            android:onClick="addWorkingHour"
+            android:text="Add your working hour" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="deleteWorkingHour"
+            android:text="Delete your working hour" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="showWorkingHours"
+            android:text="Show your working hours" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

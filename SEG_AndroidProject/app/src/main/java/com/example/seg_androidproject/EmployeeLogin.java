@@ -23,7 +23,6 @@ import java.util.Date;
 public class EmployeeLogin extends AppCompatActivity {
     private String userName;
     private Employee employee;
-    private CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +38,13 @@ public class EmployeeLogin extends AppCompatActivity {
         String nameOfClinic = employee.getNameOfClinic();
         String insurance = employee.getInsuranceTypes();
         String paymentMethod = employee.getPaymentMethod();
-        String workingHour = employee.getWorkingHours();
         TextView textView = (TextView)findViewById(R.id.textView5);
         TextView welcome = (TextView)findViewById(R.id.textView17);
         TextView profiles = (TextView)findViewById(R.id.textView16);
-        TextView workingHourView = (TextView)findViewById(R.id.textView23);
         welcome.setText("Welcome " + name + "!\n");
         textView.setText("You are logged in as employee.");
         profiles.setText("\nYour address is " + address + ".\nYour phone number is " + phoneNum + ".\nYour name of the clinic is " + nameOfClinic + "." +
                 "\nYour insurance type is " + insurance + ".\nYour payment method is " + paymentMethod);
-        if(workingHour == null){
-            workingHourView.setText("You haven't set your working hour yet");
-        }
-        else {
-            workingHourView.setText(workingHour);
-        }
     }
 
     public void editProfileOnClick(View view){
@@ -96,10 +87,19 @@ public class EmployeeLogin extends AppCompatActivity {
         AlertDialog b = builder.create();
         b.show();
     }
-    public void setWorkingHours(View view){
-        Intent intent = new Intent(this, SetWorkingHours.class);
+
+    public void addWorkingHour(View view){
+        Intent intent = new Intent(this, addWorkingHour.class);
         intent.putExtra("userName", userName);
         startActivity(intent);
         finish();
+    }
+
+    public void deleteWorkingHour(View view){
+
+    }
+
+    public void showWorkingHours(View view){
+
     }
 }
